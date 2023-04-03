@@ -1,28 +1,40 @@
 <script>
-	export let tests;
-	export let test_filter = function(_test){return true;};
+  export let tests;
+  export let test_filter = function(_test){return true;};
 </script>
 
 <style>
+td {
+  vertical-align: top;
+}
 .failed::before{
-	content: "❌";
+  content: "❌";
 }
 .passed::before{
-	content: "✅";
+  content: "✅";
 }
 .visible::before {
-	content: "👁️";
+  content: "👁️";
 }
 </style>
 
 <table>
 <tbody>
 {#each tests.filter(test_filter) as test}
-	<tr>
-		<td class={test.status}></td>
-		<td class={test.visibility}></td>
-		<td>{test.name}</td>
-	</tr>
+  <tr>
+    <td title="test result: {test.status}" class={test.status}></td>
+    <td title="test visibility: {test.visibility}" class={test.visibility}></td>
+    <td>
+      {#if test.output}
+       <details>
+        <summary>{test.name}</summary>
+        <pre>{test.output}</pre>
+       </details>
+      {:else}
+       {test.name}
+      {/if}
+    </td>
+  </tr>
 {/each}
 </tbody>
 </table>
