@@ -22,8 +22,8 @@ td {
 <tbody>
 {#each tests.filter(test_filter) as test}
   <tr>
-    <td title="test result: {test.status}" class={test.status}></td>
-    <td title="test visibility: {test.visibility}" class={test.visibility}></td>
+    <td title="test result: {test.status}" class={test.status}/>
+    <td title="test visibility: {test.visibility}" class={test.visibility}/>
     <td>
       {#if test.output}
        <details>
