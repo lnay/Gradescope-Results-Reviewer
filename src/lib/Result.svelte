@@ -4,13 +4,14 @@
 </script>
 
 <style>
-.passed {
-	background-color: green;
-	color: white;
+.failed::before{
+	content: "❌";
 }
-.failed {
-	background-color: red;
-	color: white;
+.passed::before{
+	content: "✅";
+}
+.visible::before {
+	content: "👁️";
 }
 </style>
 
@@ -18,7 +19,8 @@
 <tbody>
 {#each tests.filter(test_filter) as test}
 	<tr>
-		<td class={test.status}>{test.status}</td>
+		<td class={test.status}></td>
+		<td class={test.visibility}></td>
 		<td>{test.name}</td>
 	</tr>
 {/each}
