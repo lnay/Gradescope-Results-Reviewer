@@ -1,8 +1,8 @@
 <script>
-	export let resultData;
+	export let tests;
 </script>
 
-<style lang="css">
+<style>
 .passed {
 	background-color: green;
 	color: white;
@@ -15,7 +15,7 @@
 
 <table>
 <tbody>
-{#each resultData.tests as test}
+{#each tests as test}
 	<tr>
 		<td class={test.status}>{test.status}</td>
 		<td>{test.name}</td>

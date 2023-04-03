@@ -6,4 +6,4 @@
 
 <DarkToggle/>
 
-<Result {resultData} />
+<Result {resultData.tests} />
