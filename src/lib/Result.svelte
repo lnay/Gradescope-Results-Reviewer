@@ -1,5 +1,6 @@
 <script>
 	export let tests;
+	export let test_filter = function(_test){return true;};
 </script>
 
 <style>
@@ -15,7 +16,7 @@
 
 <table>
 <tbody>
-{#each tests as test}
+{#each tests.filter(test_filter) as test}
 	<tr>
 		<td class={test.status}>{test.status}</td>
 		<td>{test.name}</td>
