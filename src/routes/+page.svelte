@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import Result from "../lib/Result.svelte";
+  import DarkToggle from "../lib/DarkToggle.svelte";
+  import resultData from "./results.json";
+</script>
+
+<DarkToggle/>
+
+<Result {resultData} />
