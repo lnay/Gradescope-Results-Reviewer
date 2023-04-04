@@ -22,31 +22,31 @@
     },
     {
       label: "1a",
-      pattern: "^1\.a"
+      pattern: "^1\\.a"
     },
     {
       label: "1b",
-      pattern: "^1\.b"
+      pattern: "^1\\.b"
     },
     {
       label: "1c",
-      pattern: "^1\.c"
+      pattern: "^1\\.c"
     },
     {
       label: "1d",
-      pattern: "^1\.d"
+      pattern: "^1\\.d"
     },
     {
       label: "1e",
-      pattern: "^1\.e"
+      pattern: "^1\\.e"
     },
     {
       label: "1f",
-      pattern: "^1\.f"
+      pattern: "^1\\.f"
     },
     {
       label: "1g",
-      pattern: "^1\.g"
+      pattern: "^1\\.g"
     },
     {
       label: "2",
@@ -54,15 +54,15 @@
     },
     {
       label: "2a",
-      pattern: "^2\.a"
+      pattern: "^2\\.a"
     },
     {
       label: "2b",
-      pattern: "^2\.b"
+      pattern: "^2\\.b"
     },
     {
       label: "2c",
-      pattern: "^2\.c"
+      pattern: "^2\\.c"
     },
     {
       label: "3",
@@ -70,15 +70,15 @@
     },
     {
       label: "3a",
-      pattern: "^3\.1"
+      pattern: "^3\\.1"
     },
     {
       label: "3b",
-      pattern: "^3\.2"
+      pattern: "^3\\.2"
     },
     {
       label: "3c",
-      pattern: "^3\.3"
+      pattern: "^3\\.3"
     }
   ];
 </script>
