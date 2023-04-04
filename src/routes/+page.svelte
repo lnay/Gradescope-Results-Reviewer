@@ -36,7 +36,7 @@ div.right-pane {
 {#if submissions_data}
   <table>
   <tr>
-  <th> submission number </th>
+  <th> number </th>
   <th> name </th>
   <th> score </th>
   </tr>
