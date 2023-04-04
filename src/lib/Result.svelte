@@ -23,7 +23,7 @@ td {
 <button on:click={
   ()=>{
     query_selector_all("td > details").forEach( (details)=>{
-      details.open=true;
+      details.open = true;
     });
   }
 }>Open all outputs</button>
@@ -31,7 +31,7 @@ td {
 <button on:click={
   ()=>{
     query_selector_all("td > details").forEach( (details)=>{
-      details.removeAttribute("open");
+      details.open = false;
     });
   }
 }>Close all outputs</button>
