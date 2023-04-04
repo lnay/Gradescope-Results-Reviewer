@@ -1,8 +1,11 @@
 <script>
-  //import { query_selector_all } from "svelte/internal";
+  import { query_selector_all } from "svelte/internal";
 
   export let data;
-  export let test_filter = function(_test){return true;};
+
+  // Filtering vars
+  let pattern = ".*";
+  $: test_filter = (test)=>test.number.match(pattern);
 </script>
 
 <style>
@@ -23,9 +26,10 @@ td {
 {#if data}
 <h1> Submission {data.num} </h1>
 <h1> Name: {data.details[":submitters"][0][":name"]} </h1>
-{/if}
 
-<!--
+<input bind:value={pattern}/>
+<br/>
+
 <button on:click={
   ()=>{
     query_selector_all("td > details").forEach( (details)=>{
@@ -44,9 +48,15 @@ td {
 
 <table>
 <tbody>
-{#each tests.filter(test_filter) as test}
+{#each data.details[":results"].tests.filter(test_filter) as test}
   <tr>
+    <td title="test number">{test.number}</td>
     <td title="test result: {test.status}" class={test.status}/>
+    <td>
+      {#if !(test.score===null)}
+      {test.score}/{test.max_score}
+      {/if}
+    </td>
     <td title="test visibility: {test.visibility}" class={test.visibility}/>
     <td>
       {#if test.output}
@@ -62,4 +72,4 @@ td {
 {/each}
 </tbody>
 </table>
--->
+{/if}

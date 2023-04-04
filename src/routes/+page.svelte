@@ -62,5 +62,4 @@ div.right-pane {
 <SubmissionIndividual
   data={focused_submission}
   />
-{JSON.stringify(focused_submission)}
 </div>
