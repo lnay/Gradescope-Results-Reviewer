@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import DarkToggle from "../lib/DarkToggle.svelte";
   import SubmissionIndividual from "../lib/SubmissionIndividual.svelte";
+  import PythonFileView from "../lib/PythonFileView.svelte";
   import yaml from "js-yaml";
 
   let focused_submission = null;
@@ -17,12 +18,19 @@
 <style>
 div.left-pane {
   left: 0;
-  width: 49%;
+  width: 33%;
   position: absolute;
+}
+div.mid-pane {
+  left: 33%;
+  width: 33%;
+  position: absolute;
+  border-left: 2px solid currentColor;
+  padding-left: 2px;
 }
 div.right-pane {
   right: 0;
-  width: 49%;
+  width: 33%;
   position: absolute;
   border-left: 2px solid currentColor;
   padding-left: 2px;
@@ -58,8 +66,12 @@ div.right-pane {
 {/if}
 </div>
 
-<div class="right-pane">
+<div class="mid-pane">
 <SubmissionIndividual
   data={focused_submission}
   />
+</div>
+
+<div class="right-pane">
+<svelte:component this={PythonFileView} path="submission_165851132/task1.py"/>
 </div>
