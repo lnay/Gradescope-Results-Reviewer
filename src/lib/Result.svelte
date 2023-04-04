@@ -1,4 +1,6 @@
 <script>
+  import { query_selector_all } from "svelte/internal";
+
   export let tests;
   export let test_filter = function(_test){return true;};
 </script>
@@ -17,6 +19,22 @@ td {
   content: "👁️";
 }
 </style>
+
+<button on:click={
+  ()=>{
+    query_selector_all("td > details").forEach( (details)=>{
+      details.open=true;
+    });
+  }
+}>Open all outputs</button>
+
+<button on:click={
+  ()=>{
+    query_selector_all("td > details").forEach( (details)=>{
+      details.removeAttribute("open");
+    });
+  }
+}>Close all outputs</button>
 
 <table>
 <tbody>

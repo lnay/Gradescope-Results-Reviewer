@@ -19,5 +19,6 @@
 <label>
 search: <input bind:value={pattern}/>
 </label>
+<br/>
 
 <Result {tests} {test_filter} />
