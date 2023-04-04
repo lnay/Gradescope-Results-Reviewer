@@ -6,6 +6,8 @@
   import yaml from "js-yaml";
 
   let focused_submission = null;
+  let focused_file_path = null;
+  let focused_file_component = PythonFileView;
 
   let submissions_data = null;
   onMount(async () => {
@@ -55,6 +57,7 @@ div.right-pane {
         dir: key,
         details: value
       };
+      focused_file_path = null;
     }}
     >
       <td>{key.substring(11)}</td>
@@ -67,11 +70,26 @@ div.right-pane {
 </div>
 
 <div class="mid-pane">
-<SubmissionIndividual
-  data={focused_submission}
-  />
+{#if focused_submission}
+
+  <button on:click={
+    ()=>{ focused_file_path = focused_submission.dir + "/task1.py";}
+  }>task1.py</button>
+  <button on:click={
+    ()=>{ focused_file_path = focused_submission.dir + "/task2.py";}
+  }>task2.py</button>
+  <button on:click={
+    ()=>{ focused_file_path = focused_submission.dir + "/task3.py";}
+  }>task3.py</button>
+
+  <SubmissionIndividual
+    data={focused_submission}
+    />
+{/if}
 </div>
 
 <div class="right-pane">
-<svelte:component this={PythonFileView} path="submission_165851132/task1.py"/>
+  {#if focused_file_path}
+  <svelte:component this={PythonFileView} path={focused_file_path}/>
+  {/if}
 </div>
