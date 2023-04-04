@@ -1,10 +1,12 @@
 <script>
   import { onMount } from 'svelte';
   import DarkToggle from "../lib/DarkToggle.svelte";
+  import SubmissionIndividual from "../lib/SubmissionIndividual.svelte";
   import yaml from "js-yaml";
 
-  let submissions_data = null;
+  let focused_submission = null;
 
+  let submissions_data = null;
   onMount(async () => {
 		const res = await fetch(`submissions/submission_metadata.yml`);
 		let submissions_yaml = await res.text();
@@ -12,9 +14,25 @@
 	});
 </script>
 
+<style>
+div.left-pane {
+  left: 0;
+  width: 49%;
+  position: absolute;
+}
+div.right-pane {
+  right: 0;
+  width: 49%;
+  position: absolute;
+  border-left: 2px solid currentColor;
+  padding-left: 2px;
+}
+</style>
+
 <DarkToggle/>
 <br/>
 
+<div class="left-pane">
 {#if submissions_data}
   <table>
   <tr>
@@ -23,7 +41,14 @@
   <th> score </th>
   </tr>
   {#each Object.entries(submissions_data) as [key, value]}
-    <tr>
+    <tr on:click={()=>{
+      focused_submission = {
+        num: key.substring(11),
+        dir: key,
+        details: value
+      };
+    }}
+    >
       <td>{key.substring(11)}</td>
       <td>{value[":submitters"][0][":name"]}</td>
       <td>{value[":results"].score}</td>
@@ -31,3 +56,11 @@
   {/each}
   </table>
 {/if}
+</div>
+
+<div class="right-pane">
+<SubmissionIndividual
+  data={focused_submission}
+  />
+{JSON.stringify(focused_submission)}
+</div>
