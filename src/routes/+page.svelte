@@ -29,6 +29,9 @@ div.left-pane {
   height: 100%;
   overflow:scroll;
 }
+.focused {
+  background-color: red;
+}
 div.mid-pane {
   left: 20%;
   width: 39%;
@@ -79,6 +82,7 @@ div.right-pane {
       };
       focused_file_path = null;
     }}
+      class={(focused_submission&&focused_submission.dir===key)?"focused":""}
     >
       <td>{key.substring(11)}</td>
       <td>{value[":submitters"][0][":name"]}</td>
