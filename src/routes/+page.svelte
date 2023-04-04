@@ -3,11 +3,15 @@
   import DarkToggle from "../lib/DarkToggle.svelte";
   import SubmissionIndividual from "../lib/SubmissionIndividual.svelte";
   import PythonFileView from "../lib/PythonFileView.svelte";
+  import JupyterNotebookView from "../lib/JupyterNotebookView.svelte";
   import yaml from "js-yaml";
 
   let focused_submission = null;
   let focused_file_path = null;
   let focused_file_component = PythonFileView;
+
+  let jupyter_server_url = "http://localhost:8888/";
+  let jupyter_server_token = null;
 
   let submissions_data = null;
   onMount(async () => {
@@ -20,29 +24,45 @@
 <style>
 div.left-pane {
   left: 0;
-  width: 33%;
+  width: 20%;
   position: absolute;
+  height: 100%;
+  overflow:scroll;
 }
 div.mid-pane {
-  left: 33%;
-  width: 33%;
+  left: 20%;
+  width: 39%;
   position: absolute;
   border-left: 2px solid currentColor;
   padding-left: 2px;
+  height: 100%;
+  overflow:scroll;
 }
 div.right-pane {
   right: 0;
-  width: 33%;
+  width: 39%;
   position: absolute;
   border-left: 2px solid currentColor;
   padding-left: 2px;
+  height: 100%;
+  overflow:scroll;
 }
 </style>
 
+<div class="left-pane">
 <DarkToggle/>
 <br/>
 
-<div class="left-pane">
+<label>
+  Jupyter server url:
+  <input bind:value={jupyter_server_url}/>
+</label>
+<br/>
+<label>
+  Jupyter server token:
+  <input bind:value={jupyter_server_token}/>
+</label>
+
 {#if submissions_data}
   <table>
   <tr>
@@ -73,14 +93,29 @@ div.right-pane {
 {#if focused_submission}
 
   <button on:click={
-    ()=>{ focused_file_path = focused_submission.dir + "/task1.py";}
+    ()=>{
+      focused_file_component = PythonFileView;
+      focused_file_path = focused_submission.dir + "/task1.py";
+    }
   }>task1.py</button>
   <button on:click={
-    ()=>{ focused_file_path = focused_submission.dir + "/task2.py";}
+    ()=>{
+      focused_file_component = PythonFileView;
+      focused_file_path = focused_submission.dir + "/task2.py";
+    }
   }>task2.py</button>
   <button on:click={
-    ()=>{ focused_file_path = focused_submission.dir + "/task3.py";}
+    ()=>{
+      focused_file_component = PythonFileView;
+      focused_file_path = focused_submission.dir + "/task3.py";
+    }
   }>task3.py</button>
+  <button on:click={
+    ()=>{
+      focused_file_component = JupyterNotebookView;
+      focused_file_path = focused_submission.dir + "/A1.ipynb";
+    }
+  }>Notebook</button>
 
   <SubmissionIndividual
     data={focused_submission}
@@ -90,6 +125,11 @@ div.right-pane {
 
 <div class="right-pane">
   {#if focused_file_path}
-  <svelte:component this={PythonFileView} path={focused_file_path}/>
+  <svelte:component
+    this={focused_file_component}
+    path={focused_file_path}
+    {jupyter_server_url}
+    {jupyter_server_token}
+    />
   {/if}
 </div>
