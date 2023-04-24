@@ -37,12 +37,7 @@
       viewer_component: PythonFileView,
     },
     {
-      name: "task3.py",
-      label: "Task 3",
-      viewer_component: PythonFileView,
-    },
-    {
-      name: "A1.ipynb",
+      name: "notebook.ipynb",
       label: "Notebook",
       viewer_component: JupyterNotebookView,
     },
