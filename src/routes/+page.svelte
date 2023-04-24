@@ -3,8 +3,8 @@
   import type { ComponentType } from "svelte";
   import DarkToggle from "$lib/DarkToggle.svelte";
   import SubmissionIndividual from "$lib/SubmissionIndividual.svelte";
-  import PythonFileView from "$lib/PythonFileView.svelte";
-  import JupyterNotebookView from "$lib/JupyterNotebookView.svelte";
+  import PythonFileView from "$lib/fileview/PythonScript.svelte";
+  import JupyterNotebookView from "$lib/fileview/JupyterNotebook.svelte";
   import yaml from "js-yaml";
 
   let focused_submission: 
