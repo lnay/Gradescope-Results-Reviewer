@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
   import DarkToggle from "../lib/DarkToggle.svelte";
   import SubmissionIndividual from "../lib/SubmissionIndividual.svelte";
