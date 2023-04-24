@@ -1,13 +1,26 @@
-<script>
+<script lang="ts">
   import { query_selector_all } from "svelte/internal";
 
-  export let data;
+  export let data: any;
 
   // Filtering vars
   let pattern = ".*";
-  $: test_filter = (test)=>test.number.match(pattern);
 
-  const available_patterns = [
+  type Test = {
+    name: string,
+    number: string,
+    status: string,
+    visibility: string,
+    output: string,
+  };
+
+  $: test_filter = (test: Test)=>test.number.match(pattern);
+
+  const AVAILABLE_PATTERNS:
+  {
+    label: string,
+    pattern: string,
+  }[] = [
     {
       label: "All",
       pattern: ".*"
@@ -107,7 +120,7 @@ td {
 <br/>
 
 <h4> Predefined Refines: </h4>
-{#each available_patterns as elem}
+{#each AVAILABLE_PATTERNS as elem}
 <button on:click={()=>{
   pattern = elem.pattern;
 }}>{elem.label}</button>
