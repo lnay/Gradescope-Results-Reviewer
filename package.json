@@ -24,6 +24,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@types/js-yaml": "^4.0.5",
 		"js-yaml": "^4.1.0",
 		"tslib": "^2.5.0"
 	}
