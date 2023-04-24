@@ -6,12 +6,31 @@
   import JupyterNotebookView from "../lib/JupyterNotebookView.svelte";
   import yaml from "js-yaml";
 
-  let focused_submission = null;
-  let focused_file_path = null;
+  let focused_submission = "";
+  let focused_file_path = "";
   let focused_file_component = PythonFileView;
 
   let jupyter_server_url = "http://localhost:8888/";
-  let jupyter_server_token = null;
+  let jupyter_server_token = "";
+
+  const SUBMISSION_FILES = [
+    {
+      name: "task1.py",
+      viewer_component: PythonFileView,
+    },
+    {
+      name: "task2.py",
+      viewer_component: PythonFileView,
+    },
+    {
+      name: "task3.py",
+      viewer_component: PythonFileView,
+    },
+    {
+      name: "A1.ipynb",
+      viewer_component: JupyterNotebookView,
+    },
+  ]
 
   let submissions_data = null;
   onMount(async () => {
@@ -80,7 +99,7 @@ div.right-pane {
         dir: key,
         details: value
       };
-      focused_file_path = null;
+      focused_file_path = "";
     }}
       class={(focused_submission&&focused_submission.dir===key)?"focused":""}
     >
@@ -96,30 +115,14 @@ div.right-pane {
 <div class="mid-pane">
 {#if focused_submission}
 
-  <button on:click={
-    ()=>{
-      focused_file_component = PythonFileView;
-      focused_file_path = focused_submission.dir + "/task1.py";
-    }
-  }>task1.py</button>
-  <button on:click={
-    ()=>{
-      focused_file_component = PythonFileView;
-      focused_file_path = focused_submission.dir + "/task2.py";
-    }
-  }>task2.py</button>
-  <button on:click={
-    ()=>{
-      focused_file_component = PythonFileView;
-      focused_file_path = focused_submission.dir + "/task3.py";
-    }
-  }>task3.py</button>
-  <button on:click={
-    ()=>{
-      focused_file_component = JupyterNotebookView;
-      focused_file_path = focused_submission.dir + "/A1.ipynb";
-    }
-  }>Notebook</button>
+  {#each SUBMISSION_FILES as file}
+    <button on:click={
+      ()=>{
+        focused_file_component = file.viewer_component;
+        focused_file_path = focused_submission.dir + "/" + file.name;
+      }
+    }>{file.name}</button>
+  {/each}
 
   <SubmissionIndividual
     data={focused_submission}
