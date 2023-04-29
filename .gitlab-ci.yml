@@ -1,0 +1,11 @@
+stages:
+  - build
+
+build-job:
+  image: docker.io/node
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - "build"
