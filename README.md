@@ -1,3 +1,5 @@
+THIS IS A MIRROR OF THE PROJECT HOSTED ON [GITLAB](https://gitlab.com/carracall/gradescope-results-reviewer)
+
 # Gradescope Re(sults viewer)
 
 ## What this is
