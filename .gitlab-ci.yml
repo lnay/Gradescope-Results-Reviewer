@@ -5,7 +5,9 @@ build-job:
   image: docker.io/node
   stage: build
   script:
-    - npm run build
+    - npm install -g pnpm
+    - pnpm ci
+    - pnpm run build
   artifacts:
     paths:
       - "build"
